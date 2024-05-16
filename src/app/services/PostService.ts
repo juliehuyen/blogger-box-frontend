@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import {catchError, Observable, of} from "rxjs";
 import {Post, PostCreateInput, POSTS} from "../data/post";
 import {environment} from "../environment/environment";
-import {Category, CategoryCreateInput} from "../data/category";
 
 @Injectable()
 export class PostService {
@@ -27,7 +26,7 @@ export class PostService {
   protected handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`, error); // log to console
-// Let the app keep running by returning an empty result.
+      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }

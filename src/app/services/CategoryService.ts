@@ -11,8 +11,8 @@ export class CategoryService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoriesUrl);
+  getAll() : Observable<Category[]> {
+    return this.http.get<Category[]>(this.categoriesUrl).pipe(catchError(this.handleError<Category[]>('getAll')));
   }
 
   create(category: CategoryCreateInput): Observable<Category> {
