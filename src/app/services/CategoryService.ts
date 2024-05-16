@@ -18,6 +18,7 @@ export class CategoryService {
   create(category: CategoryCreateInput): Observable<Category> {
     return this.http.post<Category>(this.categoriesUrl, category);
   }
+
   update(category: Category): Observable<Category> {
     return this.http.put<Category>(this.categoriesUrl, category)
       .pipe(
