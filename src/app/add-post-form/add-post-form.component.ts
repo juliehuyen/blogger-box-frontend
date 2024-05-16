@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {PostService} from "../services/PostService";
 import {FormBuilder, Validators} from "@angular/forms";
+import {Category} from "../data/category";
+import {CategoryService} from "../services/CategoryService";
 
 @Component({
   selector: 'app-add-post-form',
@@ -8,15 +9,40 @@ import {FormBuilder, Validators} from "@angular/forms";
   styleUrl: './add-post-form.component.css'
 })
 export class AddPostFormComponent {
-  constructor(private formBuilder: FormBuilder) { }
+  categories: Category[] = [];
+  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService) { }
+  ngOnInit(): void {
+    this.categoryService.getAll().subscribe(categories => {
+      this.categories = categories;
+    })
+  }
+
   addPost= this.formBuilder.group({
     title:['',{
       validators: [Validators.required,Validators.minLength(5),Validators.maxLength(150)],
-      updateOn: 'blur'
     },
     ],
-    category:[''],
-    content:['']
+    category:['',Validators.required],
+    content:['',
+      {
+        validators: [Validators.required,Validators.maxLength(2500)],
+      }]
   })
 
+  get title() {
+    console.log(this.addPost.controls['title']);
+    return this.addPost.controls['title'];
+  }
+  get content() {
+    return this.addPost.controls['content'];
+  }
+  get category() {
+    return this.addPost.controls['category'];
+  }
+
+  protected readonly onsubmit = onsubmit;
+
+  onSubmit() {
+
+  }
 }
