@@ -3,6 +3,7 @@
     [formGroup]="addPost"
     class="needs-validation"
     (ngSubmit)="onSubmit()">
+    <br>
     <div>
       <label>Title:</label>
       <input type="text" class="form-control" formControlName="title"
@@ -15,10 +16,12 @@
         <div *ngIf="title?.errors?.['maxlength']">Title should be 150 characters or less</div>
       </div>
     </div>
+    <br>
     <div>
       <label>Category:</label>
       <select name="category" id="category" class="form-control" formControlName="category" [class.is-invalid]="category.invalid && category.touched"
               [class.is-valid]="category.valid && category.touched">
+        <option value="" disabled selected></option>
         <option *ngFor="let category of categories" [value]="category" >{{category.name}}</option>
       </select>
       <div *ngIf="category?.invalid && category.touched" class="invalid-feedback text-danger"
@@ -26,16 +29,21 @@
         <div *ngIf="category?.errors?.['required']">Content is required</div>
       </div>
     </div>
+    <br>
     <div>
       <label>Content:</label>
-      <input type="text" class="form-control" formControlName="content" [class.is-invalid]="content?.invalid && content.touched"
-             [class.is-valid]="content.valid && content.touched">
+      <textarea class="form-control content-textarea" formControlName="content" rows="2" [class.is-invalid]="content?.invalid && content.touched"
+                [class.is-valid]="content.valid && content.touched"></textarea>
       <div *ngIf="content.invalid && content.touched" class="invalid-feedback text-danger"
       >
         <div *ngIf="content?.errors?.['required']">Content is required</div>
         <div *ngIf="content?.errors?.['maxlength']">Title should be 2500 characters or less</div>
       </div>
     </div>
-
   </form>
+  <br>
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-outline-danger" style="margin-right: 10px;" (click)="onClose()">Close</button>
+    <button type="button" class="btn btn-success" (click)="onSubmit()">Post message</button>
+  </div>
 </div>
