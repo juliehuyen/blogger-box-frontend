@@ -19,7 +19,7 @@ export class PostListComponent {
 
   loadPosts(): void {
     this.postService.getPosts().subscribe(posts => {
-      this.posts = posts;
+      this.posts = posts.reverse();
     })
   }
 }

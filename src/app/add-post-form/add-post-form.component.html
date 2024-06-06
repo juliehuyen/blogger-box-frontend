@@ -22,7 +22,7 @@
       <select name="category" id="category" class="form-control" formControlName="category" [class.is-invalid]="category.invalid && category.touched"
               [class.is-valid]="category.valid && category.touched">
         <option value="" disabled selected></option>
-        <option *ngFor="let category of categories" [value]="category" >{{category.name}}</option>
+        <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
       </select>
       <div *ngIf="category?.invalid && category.touched" class="invalid-feedback text-danger"
       >
