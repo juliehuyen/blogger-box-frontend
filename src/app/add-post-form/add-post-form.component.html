@@ -26,7 +26,7 @@
       </select>
       <div *ngIf="category?.invalid && category.touched" class="invalid-feedback text-danger"
       >
-        <div *ngIf="category?.errors?.['required']">Content is required</div>
+        <div *ngIf="category?.errors?.['required']">Category is required</div>
       </div>
     </div>
     <br>
@@ -37,7 +37,7 @@
       <div *ngIf="content.invalid && content.touched" class="invalid-feedback text-danger"
       >
         <div *ngIf="content?.errors?.['required']">Content is required</div>
-        <div *ngIf="content?.errors?.['maxlength']">Title should be 2500 characters or less</div>
+        <div *ngIf="content?.errors?.['maxlength']">Content should be 2500 characters or less</div>
       </div>
     </div>
   </form>
